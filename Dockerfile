@@ -7,8 +7,6 @@ LABEL maintainer.0="Philipp Hoenisch philipp@tenx.tech" \
 
 RUN apk add --no-cache bitcoin=0.16.1-r2
 
-VOLUME ["/home/bitcoin/.bitcoin"]
-
 EXPOSE 8332 8333 18332 18333 18443 18444
 
 ENTRYPOINT ["/usr/bin/bitcoind"]
