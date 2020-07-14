@@ -2,7 +2,7 @@ FROM alpine:edge
 
 LABEL maintainer="The CoBloX developers team@coblox.tech"
 
-ENV VERSION=0.19.1-r0
+ENV VERSION=0.20.0
 
 RUN apk add --no-cache bitcoin~$VERSION bitcoin-cli~$VERSION
 
