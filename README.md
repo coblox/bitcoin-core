@@ -11,7 +11,7 @@ Simply use it the way you would use the `bitcoind` binary. All arguments are pas
 
 For example:
 
-`docker run coblox/bitcoin-core -regtest`
+`docker run ghcr.io/coblox/bitcoin-core:latest -regtest`
 
 ## Bitcoin-CLI
 
@@ -22,7 +22,7 @@ The image also has bitcoin-cli installed. It is considered best practise to use 
 Depending on whether you started your container with `-regtest`, `-testnet` or `-mainnet`, simply pass this flag to `bitcoin-cli` as well and you are good to go.
 For example, given you started the container like this:
 
-`docker run -d coblox/bitcoin-core -regtest`
+`docker run -d ghcr.io/coblox/bitcoin-core:latest -regtest`
 
 Simply exec into the container:
 
