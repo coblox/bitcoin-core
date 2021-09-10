@@ -1,0 +1,41 @@
+name: Publish docker image
+
+on:
+  push:
+    branches: master
+  release:
+    types: [created]
+
+env:
+  REGISTRY: ghcr.io
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: docker/login-action@v1.10.0
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - uses: docker/metadata-action@v3
+        id: meta
+        with:
+          images: ${{ env.REGISTRY }}/${{ github.repository }}
+          flavor: |
+            latest=${{ github.ref == 'refs/heads/master' }}
+          tags: |
+            type=semver,pattern={{version}}
+            type=ref,event=branch
+
+      - uses: docker/build-push-action@v2.7.0
+        with:
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
